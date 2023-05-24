@@ -6,7 +6,11 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { DB_HOST, DB_NAME, DB_PORT } = process.env;
-mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`);
+// mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`);
+
+mongoose.connect(
+  "mongodb://mongo:IlIPgS4LXN3lHY6W3yHn@containers-us-west-210.railway.app:5821"
+);
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +22,6 @@ app.use("/comments", require("./api/comments"));
 app.use("/likes", require("./api/likes"));
 app.use("/carts", require("./api/carts"));
 app.use("/storages", require("./api/storages"));
-// app.use("/storages", require("./api/storages"));
 
 app.listen(PORT, () => console.log("Server is running on PORT: " + PORT));
 mongoose.connection.once("open", () => console.log("Connected to MongoDB"));
